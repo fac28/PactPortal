@@ -1,7 +1,17 @@
-const { Layout } = require("../templates.js");
+const home = require("../templates/home.js");
+const express = require('express');
 
-function get() {
-    
-}
+//Variables
+const router = express.Router();
 
-module.exports = { get };
+router.get('/', (req, res) => {
+    try {
+        const homePage = home.home(req, res);
+        res.send(homePage);
+    } catch (error) {
+        console.error('Error with route:', error.message);
+        throw error;
+    }
+});
+
+module.exports = router

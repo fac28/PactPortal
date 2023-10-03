@@ -1,7 +1,16 @@
-const { removeSession } = require("../model/session");
+const { removeSession } = require('../model/session');
+const express = require('express');
 
-function post() {
-    
-}
+//Variables
+const router = express.Router();
 
-module.exports = { post };
+router.post('/', (req, res) => {
+    removeSession(req.session.id);
+  res.clearCookie("sid");
+  res.redirect("/");
+  res.status(500).send("");
+
+
+});
+
+module.exports = router;
