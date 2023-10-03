@@ -1,4 +1,4 @@
-module.exports = { Layout };
+module.exports = { Layout, signUp };
 
 function Layout({ title, content }) {
   return /*html*/ `
@@ -18,3 +18,5 @@ function Layout({ title, content }) {
     </html>
   `;
 }
+
+function signUp() {}

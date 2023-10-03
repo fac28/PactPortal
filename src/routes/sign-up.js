@@ -3,9 +3,17 @@ const { createSession } = require("../model/session.js");
 const { Layout } = require("../templates.js");
 const bcrypt = require("bcryptjs");
 
-function get() {
+const express = require('express')
 
-}
+//Variables
+const router = express.Router()
+const templates = require('../templates')
+
+router.get("/", (req, res) => {
+   cons
+
+} )
+
 
 function post() {
     
