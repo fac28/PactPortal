@@ -11,20 +11,20 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 
 const server = express();
 
-// function sessions(req, res, next) {
-//     const sid = req.signedCookies.sid;
-//     const session = getSession(sid);
-//     if (session) {
-//       const expiry = new Date(session.expires_at);
-//       const today = new Date();
-//       if (expiry < today) {
-//         removeSession(session.id);
-//         res.clearCookie(sid);
-//       }
-//       req.session = session;
-//     }
-//     next();
-//   }
+function sessions(req, res, next) {
+    const sid = req.signedCookies.sid;
+    const session = getSession(sid);
+    if (session) {
+      const expiry = new Date(session.expires_at);
+      const today = new Date();
+      if (expiry < today) {
+        removeSession(session.id);
+        res.clearCookie(sid);
+      }
+      req.session = session;
+    }
+    next();
+  }
 
   server.use((req, res, next) => {
     const time = new Date().toLocaleTimeString("en-GB");
