@@ -8,7 +8,6 @@ const login = require('./routes/log-in.js');
 const logout = require('./routes/log-out.js');
 
 const { getSession, removeSession } = require('./model/session.js');
-const staticHandler = express.static('public');
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
 
@@ -40,9 +39,9 @@ app.use((req, res, next) => {
 app.use(cookies);
 app.use(sessions);
 app.use(body);
-app.use(staticHandler);
+app.use(express.static('public'));
 app.use('/sign-up', signup);
-//app.use('/log-in', login);
+app.use('/log-in', login);
 //app.use('/log-out', logout);
 
 //Routes 
