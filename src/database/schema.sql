@@ -1,11 +1,17 @@
 
+
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT UNIQUE,
   hash TEXT,
-  -- add demon or wizard column
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  --profile info below
+  image TEXT DEFAULT NULL, 
+  isWizard BOOLEAN DEFAULT NULL, 
+  isBanned BOOLEAN DEFAULT NULL,
+  bio TEXT DEFAULT 'You haven''t added this information yet'
 );
+
 
 CREATE TABLE IF NOT EXISTS sessions (
   id TEXT PRIMARY KEY,

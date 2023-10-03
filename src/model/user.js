@@ -6,6 +6,7 @@ const insert_user = db.prepare(/*sql*/ `
   RETURNING id
 `);
 
+
 function createUser(email, hash) {
   return insert_user.get({ email, hash });
 }
