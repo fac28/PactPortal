@@ -2,6 +2,9 @@ const LogIn = require("../templates/log-in.js");
 const bcrypt = require("bcryptjs");
 const express = require("express");
 
+const { getUserByUsername } = require("../model/user.js");
+const { createSession } = require("../model/session.js");
+
 
 //Variables
 const router = express.Router();
@@ -17,28 +20,26 @@ router.get("/", (req, res) => {
     }
 })
 
-// router.post("/", (req, res) => {});
-
-// function post(req, res) {
-//     const { username, password } = req.body;
-//     const user = getUserByusername(username);
-//     if (!username || !password || !user) {
-//         return res.status(400).send("<h1>Login failed</h1>");
-//     }
-//     bcrypt.compare(password, user.hash).then((match) => {
-//         if (!match) {
-//             return res.status(400).send("<h1>Login failed</h1>");
-//         } else {
-//             const session_id = createSession(user.id);
-//             res.cookie("sid", session_id, {
-//                 signed: true,
-//                 maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-//                 sameSite: "lax",
-//                 httpOnly: true,
-//             });
-//             res.redirect(`/confessions/${user.id}`);
-//         }
-//     });
-// }
+router.post("/", (req, res) => {
+    const { username, password } = req.body;
+    const user = getUserByUsername(username);
+    if (!username || !password || !user) {
+        return res.status(400).send("<h1>Login failed</h1>");
+    }
+    bcrypt.compare(password, user.hash).then((match) => {
+        if (!match) {
+            return res.status(400).send("<h1>Login failed</h1>");
+        } else {
+            const session_id = createSession(user.id);
+            res.cookie("sid", session_id, {
+                signed: true,
+                maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+                sameSite: "lax",
+                httpOnly: true,
+            });
+            res.redirect(`/`);
+        }
+    });
+});
 
 module.exports = router;
