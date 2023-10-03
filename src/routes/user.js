@@ -1,33 +1,10 @@
-// /* eslint-disable no-unused-vars */
-// const { editUser } = require('../model/user.js');
-// const { deleteUser } = require('../model/user.js');
-
-// const UserProfile = require('../templates/user-profile.js');
-// const bcrypt = require('bcryptjs');
-
-// const express = require('express');
-
-// const router = express.Router();
-
-// router.get('/', (req, res) => {
-//     try {
-//         const userPage = UserProfile.UserProfile(req, res);
-//         res.send(userPage);
-//     } catch (error) {
-//         console.error('Error with route:', error.message);
-//         throw error;
-//     }
-// });
-
-
-// module.exports = router;
 const { updateUser, deleteUser } = require('../model/user.js');
 const UserProfile = require('../templates/user-profile.js');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/:username', (req, res) => {
+router.get('/', (req, res) => {
     try {
         const userPage = UserProfile.UserProfile(req, res);
         res.send(userPage);
@@ -38,7 +15,7 @@ router.get('/:username', (req, res) => {
 });
 
 
-router.post('/:username/update', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { imageURL, bio } = req.body;
         const username = req.params.username;
@@ -64,7 +41,7 @@ router.post('/:username/update', async (req, res) => {
 });
 
 // Route to handle user profile deletions
-router.post('/:username/delete', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const username = req.params.username;
 

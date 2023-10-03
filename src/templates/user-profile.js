@@ -1,37 +1,5 @@
-// const { layout } = require('./layout.js');
-
-// function UserProfile(req, res) {
-//     const title = 'My Account';
-//     const content = /*html*/ `
-//     <div>
-//     <h1>${title}</h1>
-
-//       <form method="POST" class="Row">
-      
-//         <label for="username">Username</label>
-//         <input type="text" id="username" name="username" required>
-      
-             
-//       <label for="imageURL">Upload a Photo</label>
-//       <input type="text" id="imageURL" name="imageURL">
-
-//       <label for="bio">Describe your powers</label>
-//       <input type="text" id="bio" name="bio">
-
-     
-
-//       <button class="Button">Update Profile</button>
-//     </form>
-//     <button class="Button">Delete Profile</button>
-//   </div>
-//     `;
-//     const body = layout({ title, content });
-//     res.send(body);
-// }
-
-// module.exports = { UserProfile };
 const { layout } = require('./layout.js');
-const { getUserByUsername } = require('./user.js');
+const { getUserByUsername } = require('../model/user.js');
 
 function UserProfile(req, res) {
     const reqUsername = req.params.username; // Changed parameter name to reqUsername
@@ -46,7 +14,7 @@ function UserProfile(req, res) {
     }
 
     // Extract user data
-    const { id, username, imageURL, bio } = userData;
+    const { username, imageURL, bio } = userData;
 
     const title = 'My Account';
     const content = /*html*/ `
