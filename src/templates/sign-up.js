@@ -1,4 +1,4 @@
-const { layout } = require("./layout.js")
+const { layout } = require('./layout.js');
 
 function SignUp(req, res) {
     const title = 'Create an account';
@@ -15,22 +15,24 @@ function SignUp(req, res) {
           
           
   
-          <fieldset>
-          <legend>What are you?</legend>
-          <label>
-            <input type="radio" name="isWizard" value="1" required> Wizard
-          </label>
-          <label>
-            <input type="radio" name="isWizard" value="0"> Demon
-          </label>
-          </fieldset>
+        
           
   
-          <label for="imageURL">Upload a photo</label>
+          <label for="imageURL">Upload a Photo</label>
           <input type="text" id="imageURL" name="imageURL">
   
           <label for="bio">Describe your powers</label>
           <input type="text" id="bio" name="bio">
+
+          <fieldset>
+            <legend>What are you?</legend>
+            <label>
+              <input type="radio" name="isWizard" value="1" required> Wizard
+            </label>
+            <label>
+              <input type="radio" name="isWizard" value="0"> Demon
+            </label>
+          </fieldset>
   
           <button class="Button">Sign up</button>
         </form>
@@ -40,6 +42,5 @@ function SignUp(req, res) {
     const body = layout({ title, content });
     res.send(body);
 }
-
 
 module.exports = { SignUp };
