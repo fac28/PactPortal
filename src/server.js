@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
-//const home = require('./routes/home.js');
+const home = require('./routes/home.js');
 const signup = require('./routes/sign-up.js');
 const login = require('./routes/log-in.js');
 const logout = require('./routes/log-out.js');
@@ -42,9 +42,9 @@ app.use(body);
 app.use(express.static('public'));
 app.use('/sign-up', signup);
 app.use('/log-in', login);
-//app.use('/log-out', logout);
+app.use('/log-out', logout);
 
 //Routes 
 
-// app.get() fill in later
+app.get("/", home);
 module.exports = app;

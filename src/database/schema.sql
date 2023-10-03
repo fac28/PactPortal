@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
   isWizard BOOLEAN,
   isAdmin BOOLEAN DEFAULT 0,
   isBanned BOOLEAN DEFAULT 0, --wont use til MVP made
-  bio TEXT DEFAULT 'You haven''t added this yet'
+  bio TEXT DEFAULT "You haven't added this yet"
 );
 
 CREATE TABLE IF NOT EXISTS sessions (
