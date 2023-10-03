@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   --profile info below
   image TEXT DEFAULT NULL, 
+  isAdmin BOOLEAN DEFAULT NULL,
   isWizard BOOLEAN DEFAULT NULL, 
   isBanned BOOLEAN DEFAULT NULL,
   bio TEXT DEFAULT 'You haven''t added this information yet'
