@@ -18,4 +18,22 @@ function getUserByUsername(username) {
   return select_user_by_username.get(username);
 }
 
-module.exports = { createUser, getUserByUsername };
+const update_user = db.prepare(/*sql*/ `
+  UPDATE users
+  SET imageURL = $imageURL, bio = $bio
+  WHERE id = $id
+  RETURNING id
+`);
+
+function updateUser(imageURL, bio) {
+  return update_user.get({  imageURL, bio });
+}
+const delete_user = db.prepare(/*sql*/ `
+  DELETE FROM users WHERE id = $id
+`);
+
+function deleteUser(username) {
+  return delete_user.run({ username });
+}
+
+module.exports = { createUser, updateUser, deleteUser, getUserByUsername };

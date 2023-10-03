@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     try {
-        const signUpPage = SignUp.SignUp(req, res);
+        const signUpPage = UserProfile.SignUp(req, res);
         res.send(signUpPage);
     } catch (error) {
         console.error('Error with route:', error.message);

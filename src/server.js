@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 //const home = require('./routes/home.js');
 const signup = require('./routes/sign-up.js');
+const user = require('./routes/user.js');
 const login = require('./routes/log-in.js');
 const logout = require('./routes/log-out.js');
 
@@ -41,6 +42,7 @@ app.use(sessions);
 app.use(body);
 app.use(express.static('public'));
 app.use('/sign-up', signup);
+app.use('/user/:username', user);
 app.use('/log-in', login);
 //app.use('/log-out', logout);
 
