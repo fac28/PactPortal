@@ -19,6 +19,11 @@ router.get('/', (req, res) => {
     }
 });
 
-router.post('/', (req, res) => {});
+// router.post('/', (req, res) => {
+//     const {username, passwprd } = req.body;
+//     if (!username || !password) {
+//         res.status(400).send("Bad input");
+//       } else {
+// });
 
 module.exports = router;
