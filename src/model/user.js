@@ -1,21 +1,21 @@
 const db = require("../database/db.js");
 
 const insert_user = db.prepare(/*sql*/ `
-  INSERT INTO users (email, hash) -- insert wizard or demon
-  VALUES ($email, $hash)
+  INSERT INTO users (username, hash) -- insert wizard or demon
+  VALUES ($username, $hash)
   RETURNING id
 `);
 
-function createUser(email, hash) {
-  return insert_user.get({ email, hash });
+function createUser(username, hash) {
+  return insert_user.get({ username, hash });
 }
 
-const select_user_by_email = db.prepare(/*sql*/ `
-  SELECT id, email, hash, created_at FROM users WHERE email = ?
+const select_user_by_username = db.prepare(/*sql*/ `
+  SELECT id, username, hash, created_at FROM users WHERE username = ?
 `);
 
-function getUserByEmail(email) {
-  return select_user_by_email.get(email);
+function getUserByUsername(username) {
+  return select_user_by_username.get(username);
 }
 
-module.exports = { createUser, getUserByEmail };
+module.exports = { createUser, getUserByUsername };
