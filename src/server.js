@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -11,7 +12,7 @@ const staticHandler = express.static('public');
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
 
-const templates = require('./templates')
+//const templates = require('./templates')
 
 
 

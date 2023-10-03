@@ -1,7 +1,7 @@
-const { Layout } = require("../templates.js");
+/* eslint-disable no-unused-vars */
 
-function get() {
-    
-}
+const { layout } = require('../templates/templates.js');
+
+function get() {}
 
 module.exports = { get };
