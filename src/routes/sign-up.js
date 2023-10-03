@@ -11,13 +11,14 @@ const router = express.Router()
 const templates = require('../templates')
 
 router.get("/", (req, res) => {
-   const signUpPage =  SignUp();
+   try {
+   const signUpPage =  templates.SignUp(req,res)
 res.send(signUpPage);
-} )
+} catch (error) {console.error('Error with route:', error.message)
+throw error}})
 
 
-function post() {
-    
-}
+router.post("/", (req, res) => 
+{}) 
 
-module.exports = { get, post };
+module.exports = router;

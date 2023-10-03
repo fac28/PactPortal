@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const cookieParser = require('cookie-parser');
 //const home = require('./routes/home.js');
 const signup = require('./routes/sign-up.js');
@@ -10,7 +11,9 @@ const staticHandler = express.static('public');
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
 
-const app = express();
+const templates = require('./templates')
+
+
 
 function sessions(req, res, next) {
     const sid = req.signedCookies.sid;
@@ -38,8 +41,8 @@ app.use(sessions);
 app.use(body);
 app.use(staticHandler);
 app.use('/sign-up', signup);
-app.use('/log-in', login);
-app.use('/log-out', logout);
+//app.use('/log-in', login);
+//app.use('/log-out', logout);
 
 //Routes 
 
