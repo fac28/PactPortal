@@ -4,12 +4,6 @@ const db = require("./db.js");
 
 const seedPath = join(__dirname, "seed.sql");
 const seed = readFileSync(seedPath, "utf-8");
+db.exec(seed);
 
-function seedDb() {
-    db.exec(seed);
-    console.log("DB seeded with example data");
-}
-
-seedDb();
-
-module.exports = seedDb;
+console.log("DB seeded with example data");
