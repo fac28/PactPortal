@@ -9,6 +9,11 @@ function home(req, res) {
         </div>
         <p class="subtitle">Bringing wizards and demons together</p>
     </div>
+    <div>
+        <a href="/sign-up"><button>Sign Up</button></a>
+        <a href="/log-in"><button>Log In</button></a>
+    </div>
+    <h2>We're disrupting sorcery.</h2>
     `;
 
     const body = layout({ title, content });
