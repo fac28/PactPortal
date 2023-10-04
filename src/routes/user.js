@@ -1,13 +1,24 @@
 const { updateUser, deleteUser } = require('../model/user.js');
-const { getUserByUsername } = require('../model/user.js');
+const { getUserById} = require('../model/user.js');
+const { getSession } = require('../model/session.js');
 const UserProfile = require('../templates/user-profile.js');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/:username', (req, res) => {
+router.get('/', (req, res) => {
     try {
-        const userPage = UserProfile.UserProfile(req, res);
+        const sid = req.signedCookies.sid;
+        const session = getSession(sid);
+        const userData = session && getUserById(session.user_id);
+    
+        if (!userData) {
+            // Handle the case where the user doesn't exist / isn't logged in
+            res.redirect("/");
+            return;
+        }
+    
+        const userPage = UserProfile.UserProfile(req, res, userData);
         res.send(userPage);
     } catch (error) {
         console.error('Error with route:', error.message);
@@ -15,13 +26,14 @@ router.get('/:username', (req, res) => {
     }
 });
 
-router.post('/:username/update', async (req, res) => {
+router.post('/update', async (req, res) => {
     try {
-        const { imageURL, bio } = req.body;
-        const username = req.params.username;
+        const sid = req.signedCookies.sid;
+        const session = getSession(sid);
+        const id = session && session.user_id;
 
         // Fetch the user by username
-        const user = await getUserByUsername(username);
+        const user = await getUserById(id);
 
         if (!user) {
             // Handle the case where the user doesn't exist
@@ -30,10 +42,11 @@ router.post('/:username/update', async (req, res) => {
         }
 
         // Use the updateUser function to update the user's profile
-        await updateUser( imageURL, bio);
+        const { imageURL, bio } = req.body;
+        await updateUser( id, imageURL, bio);
      
         // Redirect or send a response as needed
-        res.redirect(`/${username}`);
+        res.redirect(`/`);
     } catch (error) {
         console.error('Error with update route:', error.message);
         throw error;
@@ -41,21 +54,20 @@ router.post('/:username/update', async (req, res) => {
 });
 
 // Route to handle user profile deletions
-router.post('/user/:username/delete', async (req, res) => {
+router.post('/delete', async (req, res) => {
     try {
-        const username = req.params.username;
+        const sid = req.signedCookies.sid;
+        const session = getSession(sid);
+        const id = session && session.user_id;
 
-        // Fetch the user by username
-        const user = await getUserByUsername(username);
-
-        if (!user) {
+        if (!id) {
             // Handle the case where the user doesn't exist
             res.status(404).send('User not found');
             return;
         }
 
         // Use the deleteUser function to delete the user's profile
-        await deleteUser(user.username);
+        await deleteUser(id);
 
         // Redirect or send a response as needed (e.g., to a confirmation page)
         res.send('User profile deleted successfully');

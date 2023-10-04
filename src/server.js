@@ -14,8 +14,6 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 
 //const templates = require('./templates')
 
-
-
 function sessions(req, res, next) {
     const sid = req.signedCookies.sid;
     const session = getSession(sid);
@@ -42,7 +40,7 @@ app.use(sessions);
 app.use(body);
 app.use(express.static('public'));
 app.use('/sign-up', signup);
-app.use('/user/:username', user);
+app.use('/user', user);
 app.use('/log-in', login);
 //app.use('/log-out', logout);
 

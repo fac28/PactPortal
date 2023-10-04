@@ -1,26 +1,12 @@
 const { layout } = require('./layout.js');
-const { getUserByUsername } = require('../model/user.js');
 
-function UserProfile(req, res) {
-    const reqUsername = req.params.username; 
-    
-    // Use getUserByUsername to fetch user data by username
-    const userData = getUserByUsername(reqUsername);
-
-    if (!userData) {
-        // Handle the case where the user doesn't exist
-        res.status(404).send('User not found');
-        return;
-    }
-
-    // Extract user data
+function UserProfile(req, res, userData) {
     const { username, imageURL, bio } = userData;
-
     const title = 'My Account';
     const content = /*html*/ `
     <div>
         <h1>${title}</h1>
-             <form method="POST" class="Row">
+             <form method="POST" action="/user/update" class="Row">
             <h2>${username}</h2>
             <label for="imageURL">Image URL:</label>
             <input type="text" id="imageURL" name="imageURL" value="${imageURL}">
@@ -31,7 +17,7 @@ function UserProfile(req, res) {
            
     </form>
     
-    <form method="POST" class="Row">
+    <form method="POST" action="/user/delete"  class="Row">
         <button class="Button" type="submit">Delete Profile</button>
     </form>
     

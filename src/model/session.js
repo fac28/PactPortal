@@ -31,4 +31,12 @@ function removeSession(sid) {
   return delete_session.run(sid);
 }
 
-module.exports = { createSession, getSession, removeSession };
+const delete_sessio_by_user_id = db.prepare(/*sql*/ `
+  DELETE FROM sessions WHERE user_id = ?
+`);
+
+function removeSessionByUserId(id) {
+  return delete_sessio_by_user_id.run(id);
+}
+
+module.exports = { createSession, getSession, removeSession, removeSessionByUserId };
