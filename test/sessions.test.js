@@ -16,3 +16,20 @@ test("createSession can insert a new session", async () => {
 
     reset()
 });
+
+test("getSession can retrieve an existing session", async () => {
+    reset();
+  
+    // Create a user and session
+    createUser('testuser', 'hashedPassword', 'image.jpg', 1, 'User bio');
+    const userId = getLastId("sessions")
+    const sessionId = createSession(userId);
+  
+    // Retrieve the session
+    const session = getSession(sessionId);
+  
+    // Assert that the session exists
+    assert.ok(session);
+  
+    reset();
+  });
