@@ -5,20 +5,20 @@ function UserProfile(req, res, userData) {
     const title = 'My Account';
     const content = /*html*/ `
     <div>
-        <h1>${title}</h1>
-             <form method="POST" action="/user/update" class="Row">
-            <h2>${username}</h2>
+        <h2>${title}</h2>
+             <form method="POST" action="/user/update" class="row">
+            <h3>${username}</h3>
             <label for="imageURL">Image URL:</label>
             <input type="text" id="imageURL" name="imageURL" value="${imageURL}">
             <label for="bio">Your Bio:</label>
             <input type="text" id="bio" name="bio" value="${bio}">
-            <button class="Button">Update Profile</button>
+            <button class="button">Update Profile</button>
         </form>
            
     </form>
     
     <form method="POST" action="/user/delete"  class="Row">
-        <button class="Button" type="submit">Delete Profile</button>
+        <button class="button" type="submit">Delete Profile</button>
     </form>
     
     </div>
