@@ -42,7 +42,7 @@ app.use(sessions);
 app.use(body);
 app.use(express.static('public'));
 app.use('/sign-up', signup);
-app.use('/:username', user);
+app.use('/user/:username', user);
 app.use('/log-in', login);
 //app.use('/log-out', logout);
 

@@ -2,7 +2,7 @@ const { layout } = require('./layout.js');
 const { getUserByUsername } = require('../model/user.js');
 
 function UserProfile(req, res) {
-    const reqUsername = req.params.username; // Changed parameter name to reqUsername
+    const reqUsername = req.params.username; 
     
     // Use getUserByUsername to fetch user data by username
     const userData = getUserByUsername(reqUsername);
@@ -20,19 +20,18 @@ function UserProfile(req, res) {
     const content = /*html*/ `
     <div>
         <h1>${title}</h1>
-        <form method="POST" action="/user/:username/update" class="Row">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required value="${username}">
-            <label for="imageURL">Upload a Photo</label>
+             <form method="POST" class="Row">
+            <h2>${username}</h2>
+            <label for="imageURL">Image URL:</label>
             <input type="text" id="imageURL" name="imageURL" value="${imageURL}">
-            <label for="bio">Describe your powers</label>
+            <label for="bio">Your Bio:</label>
             <input type="text" id="bio" name="bio" value="${bio}">
             <button class="Button">Update Profile</button>
         </form>
            
     </form>
     
-    <form method="POST" action="/user/:username/delete">
+    <form method="POST" class="Row">
         <button class="Button" type="submit">Delete Profile</button>
     </form>
     

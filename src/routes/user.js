@@ -1,10 +1,11 @@
 const { updateUser, deleteUser } = require('../model/user.js');
+const { getUserByUsername } = require('../model/user.js');
 const UserProfile = require('../templates/user-profile.js');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:username', (req, res) => {
     try {
         const userPage = UserProfile.UserProfile(req, res);
         res.send(userPage);
@@ -14,8 +15,7 @@ router.get('/', (req, res) => {
     }
 });
 
-
-router.post('/', async (req, res) => {
+router.post('/:username/update', async (req, res) => {
     try {
         const { imageURL, bio } = req.body;
         const username = req.params.username;
@@ -30,10 +30,10 @@ router.post('/', async (req, res) => {
         }
 
         // Use the updateUser function to update the user's profile
-        await updateUser(user.id, imageURL, bio);
-
+        await updateUser( imageURL, bio);
+     
         // Redirect or send a response as needed
-        res.redirect(`/user/${username}`);
+        res.redirect(`/${username}`);
     } catch (error) {
         console.error('Error with update route:', error.message);
         throw error;
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
 });
 
 // Route to handle user profile deletions
-router.post('/', async (req, res) => {
+router.post('/user/:username/delete', async (req, res) => {
     try {
         const username = req.params.username;
 

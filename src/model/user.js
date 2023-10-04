@@ -21,15 +21,15 @@ function getUserByUsername(username) {
 const update_user = db.prepare(/*sql*/ `
   UPDATE users
   SET imageURL = $imageURL, bio = $bio
-  WHERE id = $id
-  RETURNING id
+  WHERE username = $username
+  RETURNING username
 `);
 
-function updateUser(imageURL, bio) {
-  return update_user.get({  imageURL, bio });
+function updateUser(username, imageURL, bio) {
+  return update_user.get({ username, imageURL, bio });
 }
 const delete_user = db.prepare(/*sql*/ `
-  DELETE FROM users WHERE id = $id
+  DELETE FROM users WHERE username = $username
 `);
 
 function deleteUser(username) {
