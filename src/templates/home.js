@@ -3,7 +3,7 @@ const { getUserList } = require("../model/user.js");
 
 function home(req, res) {
     const title = 'PactPortal';
-    const content = /*html*/ `
+    const content = /*html*/ ` 
     <div class="banner">
         <div class="title">
             <img src="images/logo.svg" /><h1>PactPortal</h1>
