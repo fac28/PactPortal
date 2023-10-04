@@ -1,1 +1,44 @@
-/* styles */
+@import url("https://fonts.googleapis.com/css2?family=Metamorphous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+/* Variables */
+:root {
+    --text-primary: hsl(0, 0%, 30%);
+}
+
+body {
+    color: var(--text-primary);
+}
+
+main {
+    text-align: center;
+}
+
+.banner {
+    padding: 50px 50px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.subtitle {
+    align-self: flex-end;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16pt;
+    margin: 0 0 0 0px;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 80px;
+    font-family: 'Metamorphous', sans-serif;
+}

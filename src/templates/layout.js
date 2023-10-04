@@ -8,6 +8,10 @@ function layout({ title, content }) {
       <title>${title}</title>
       <link rel="stylesheet" href="normalize.css">
       <link rel="stylesheet" href="styles.css">
+      <!-- Favicons -->
+      <link rel="icon" href="/images/favicon-32.png">
+      <link rel="icon" href="/images/favicon-128.png">
+      <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
         </head>
         <body>
             <main>
