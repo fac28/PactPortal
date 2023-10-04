@@ -8,9 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     try {
-        const sid = req.signedCookies.sid;
-        const session = getSession(sid);
-        const userData = session && getUserById(session.user_id);
+        const userData = req.session && getUserById(req.session.user_id);
     
         if (!userData) {
             // Handle the case where the user doesn't exist / isn't logged in
@@ -28,9 +26,7 @@ router.get('/', (req, res) => {
 
 router.post('/update', async (req, res) => {
     try {
-        const sid = req.signedCookies.sid;
-        const session = getSession(sid);
-        const id = session && session.user_id;
+        const id = req.session && req.session.user_id;
 
         // Fetch the user by username
         const user = await getUserById(id);
@@ -56,9 +52,7 @@ router.post('/update', async (req, res) => {
 // Route to handle user profile deletions
 router.post('/delete', async (req, res) => {
     try {
-        const sid = req.signedCookies.sid;
-        const session = getSession(sid);
-        const id = session && session.user_id;
+        const id = req.session && req.session.user_id;
 
         if (!id) {
             // Handle the case where the user doesn't exist
@@ -70,7 +64,7 @@ router.post('/delete', async (req, res) => {
         await deleteUser(id);
 
         // Redirect or send a response as needed (e.g., to a confirmation page)
-        res.send('User profile deleted successfully');
+        res.redirect('/');
     } catch (error) {
         console.error('Error with delete route:', error.message);
         throw error;

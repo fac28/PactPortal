@@ -4,19 +4,14 @@ function SignUp(req, res) {
     const title = 'Create an account';
     const content = /*html*/ `
       <div>
-        <h1>${title}</h1>
-        <form method="POST" class="Row">
-          
+        <h2>${title}</h2>
+        <form method="POST" class="row">
+
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
           
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
-          
-          
-  
-        
-          
   
           <label for="imageURL">Upload a Photo</label>
           <input type="text" id="imageURL" name="imageURL">
@@ -34,7 +29,7 @@ function SignUp(req, res) {
             </label>
           </fieldset>
   
-          <button class="Button">Sign up</button>
+          <button class="button">Sign up</button>
         </form>
   
       </div>

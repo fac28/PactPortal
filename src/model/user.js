@@ -47,4 +47,12 @@ function deleteUser(id) {
   return delete_user.run({ id });
 }
 
-module.exports = { createUser, updateUser, deleteUser, getUserByUsername,getUserById };
+const select_user_by_type = db.prepare(/*sql*/ `
+  SELECT username, imageURL, isWizard, bio FROM users WHERE isWizard = ?
+`);
+
+function getUserList(isWizard) {
+  return select_user_by_type.all(isWizard);
+}
+
+module.exports = { createUser, updateUser, deleteUser, getUserByUsername,getUserById, getUserList};
