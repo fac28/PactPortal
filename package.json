@@ -4,6 +4,7 @@
     "description": "FAC Week 3 Authentication",
     "main": "index.js",
     "scripts": {
+    "start": "node src/index",
         "dev": "cross-env DB_FILE='db.sqlite' COOKIE_SECRET=abc nodemon src/index.js",
         "seed": "cross-env DB_FILE='db.sqlite' node src/database/seed.js",
         "test": "cross-env DB_FILE='test.sqlite' COOKIE_SECRET=abc node --test"
