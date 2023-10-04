@@ -25,9 +25,9 @@ function home(req, res) {
 }
 
 function users(req, res, isWizard) {
+    console.log(!isWizard)
     const title = 'PactPortal';
-    const users = getUserList(isWizard);
-    console.log(users);
+    const users = getUserList(isWizard ? 0 : 1);
     const content = /*html*/ `
     <div class="banner">
     <div>
