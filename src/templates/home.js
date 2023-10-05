@@ -30,6 +30,20 @@ function home(req, res) {
             </div>
             <img src="images/pentagram.png" />
         </div>
+        <div class="card">
+            <div class="card-caption">
+                <h4>No More Ouija.</h3>
+                <p>Know who you're talking to, and enjoy the speed of our gigabit network, providing up to 500,000,000x (yes, you read that correctly) faster message transfer than outdated ouija boards.<p>
+            </div>
+            <img src="images/ouija.png" />
+        </div>
+        <div class="card">
+            <div class="card-caption">
+                <h4>Seals. Simplified.</h3>
+                <p>QR codes provide an easier, more secure way to register pacts, making complicated seals a thing of the past.<p>
+            </div>
+            <img src="images/qr-code.png" />
+        </div>
     </div>
 
     `;
