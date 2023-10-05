@@ -106,6 +106,13 @@ select {
     max-width: 400px;
 }
 
+fieldset {
+    padding: 15px;
+    width: 350px;
+    display: flex;
+    justify-content: space-around;
+}
+
 .match-container {
     display: flex;
     flex-direction: column;
