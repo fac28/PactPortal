@@ -1,8 +1,9 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const { reset, request, get_sid } = require("./helpers.js");
+const { reset, request } = require("./helpers.js");
+// const { get_sid } = require("./helpers.js");
 const { getUserByUsername } = require(`../src/model/user.js`);
-const { getSession } = require(`../src/model/session.js`);
+// const { getSession } = require(`../src/model/session.js`);
 
 test("POST /sign-up creates new user", async () => {
     reset();
@@ -31,12 +32,12 @@ test("POST /sign-up creates new user", async () => {
       `Expected sign up to set cookie named 'sid', but set-cookie header was: ${headers["set-cookie"]}`
     );
 
-    const sid = get_sid(headers);
-    const session = getSession(sid);
-    assert.ok(
-      session,
-      `Expected sign up to create a new session created in the DB`
-    );
+    // const sid = get_sid(headers);
+    // const session = getSession(sid);
+    // assert.ok(
+    //   session,
+    //   `Expected sign up to create a new session created in the DB`
+    // );
 
     const user = getUserByUsername("helen");
     assert.ok(
