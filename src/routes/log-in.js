@@ -3,8 +3,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 
 const { getUserByUsername } = require("../model/user.js");
-const { createSession } = require("../model/session.js");
-
+const { createSession } = require("../model/session.js")
 
 
 //Variables

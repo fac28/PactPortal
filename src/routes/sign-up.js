@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { createUser } = require('../model/user.js');
 const { createSession } = require('../model/session.js');
-const { cookieConstant } = require('../constants.js');
 const SignUp = require('../templates/sign-up.js');
 const bcrypt = require('bcryptjs');
 
