@@ -8,7 +8,9 @@ function SignUp(req, res, usernameError = '') {
         <form method="POST" class="row">
 
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required placeholder="${validation(usernameError)}">
+            <input type="text" id="username" name="username" required placeholder="${validation(
+                usernameError
+            )}">
           
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
@@ -39,11 +41,11 @@ function SignUp(req, res, usernameError = '') {
 }
 
 function validation(message) {
-  if (message) {
-      return /*html*/ `${message}`
-  } else {
-      return ''
-  }
+    if (message) {
+        return /*html*/ `${message}`;
+    } else {
+        return '';
+    }
 }
 
 module.exports = { SignUp };

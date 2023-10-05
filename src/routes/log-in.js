@@ -4,7 +4,7 @@ const express = require("express");
 
 const { getUserByUsername } = require("../model/user.js");
 const { createSession } = require("../model/session.js");
-const { cookieConstant } = require("../constants.js")
+
 
 
 //Variables
@@ -32,7 +32,12 @@ router.post("/", (req, res) => {
             return res.status(400).send("<h1>Login failed</h1>");
         } else {
             const session_id = createSession(user.id);
-            res.cookie("sid", session_id, cookieConstant);
+            res.cookie("sid", session_id, {
+                signed: true,
+                maxAge: 1000 * 60 * 60 * 24 * 7,
+                sameSite: 'lax',
+                httpOnly: true,
+            });
             res.redirect(`/`);
         }
     });
