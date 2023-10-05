@@ -110,6 +110,7 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .post-username {
@@ -133,7 +134,7 @@ select {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .card {
@@ -152,8 +153,25 @@ select {
 
 .card-caption p {
     margin: 10px;
+    margin-bottom: 0;
+    line-height: 1.4;
 }
 
 .card img {
     height: 100px;
+}
+
+.section-2 {
+    background-color: darkorchid;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.blurb {
+    font-size: 20px;
+    line-height: 1.4;
+    max-width: 1000px;
 }
