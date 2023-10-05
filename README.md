@@ -40,5 +40,4 @@ Start the server
   npm run dev
 ```
 
-## Database Schema
 
