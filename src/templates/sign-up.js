@@ -1,6 +1,6 @@
 const { layout } = require('./layout.js');
 
-function SignUp(req, res) {
+function SignUp(req, res, usernameError = '') {
     const title = 'Create an account';
     const content = /*html*/ `
       <div>
@@ -8,7 +8,7 @@ function SignUp(req, res) {
         <form method="POST" class="row">
 
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username" required placeholder="${validation(usernameError)}">
           
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
@@ -36,6 +36,14 @@ function SignUp(req, res) {
     `;
     const body = layout({ title, content });
     res.send(body);
+}
+
+function validation(message) {
+  if (message) {
+      return /*html*/ `${message}`
+  } else {
+      return ''
+  }
 }
 
 module.exports = { SignUp };
