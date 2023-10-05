@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { createUser } = require('../model/user.js');
 const { createSession } = require('../model/session.js');
-const { cookieConstant } = require('../constants.js');
 const SignUp = require('../templates/sign-up.js');
 const bcrypt = require('bcryptjs');
 
@@ -35,7 +34,12 @@ router.post('/', (req, res) => {
                     bio
                 );
                 const session_id = createSession(user.id);
-                res.cookie('sid', session_id, cookieConstant);
+                res.cookie('sid', session_id, {
+                    signed: true,
+                    maxAge: 1000 * 60 * 60 * 24 * 7,
+                    sameSite: 'lax',
+                    httpOnly: true,
+                });
 
                 res.redirect('/');
             } catch (error) {
