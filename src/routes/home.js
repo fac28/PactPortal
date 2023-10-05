@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
     try {
         const session = req.session
         if (!session) {
-            const homePage = home.home(req, res);
+            const homePage = home.home();
             res.send(homePage);
         } else {
             const user = getUserById(session.user_id)
-            const homePage = home.users(req, res, user.isWizard);
+            const homePage = home.users(user.isWizard);
             res.send(homePage);
         }
 

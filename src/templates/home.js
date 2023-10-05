@@ -1,7 +1,7 @@
 const { layout } = require('./layout.js');
 const { getUserList } = require("../model/user.js");
 
-function home(req, res) {
+function home() {
     const title = 'PactPortal';
     const content = /*html*/ `
     <div class="banner">
@@ -51,7 +51,7 @@ function home(req, res) {
     return layout({ title, content });
 }
 
-function users(req, res, isWizard) {
+function users(isWizard) {
     console.log(!isWizard)
     const title = 'PactPortal';
     const users = getUserList(isWizard ? 0 : 1);
