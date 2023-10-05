@@ -51,7 +51,7 @@ function home() {
     return layout({ title, content });
 }
 
-function users(isWizard) {
+function users(isWizard, isAdmin) {
     console.log(!isWizard)
     const title = 'PactPortal';
     const users = getUserList(isWizard ? 0 : 1);
@@ -68,21 +68,26 @@ function users(isWizard) {
             <a href="/log-out"><button class="button">Log Out</button></a>
         </div>
         <h2>${isWizard ? 'Demons' : 'Wizards'} Near You</h2>
-        ${users.map(user => createPost(user)).join('')}
+        ${users.map(user => createPost(user, isAdmin)).join('')}
     </div>
 `
     return layout({ title, content });
 }
 
-function createPost(user) {
+function createPost(user, isAdmin) {
     return /*html*/ `
     <div class="post">
         <p class="post-username">${user.username}</p>
         <img src="${user.imageURL}" class="post-picture" />
         <p class="post-bio">${user.bio}</p>
-        <button class="button">Banish</button>
+        ${isAdmin ? `
+            <form method="POST" action="/user/delete" class="Row">
+                <button class="button" type="submit">Impose Ban</button>
+            </form>
+        ` : ''}
     </div>
-`
+    `;
 }
+
 
 module.exports = { home, users };
