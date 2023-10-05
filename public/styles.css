@@ -108,6 +108,7 @@ select {
 
 fieldset {
     padding: 15px;
+    margin-bottom: 10px;
     width: 350px;
     display: flex;
     justify-content: space-around;
